@@ -23,10 +23,15 @@ but we know the original header of any png file
 then i just write a simple script python to get the key by xoring this 8 byte with the 8 byte  of the encrypted png file
 
 `#!/usr/bin/env python`
+
 `f = open('enc_photo.png')`
+
 `enc_data = f.read()[:12]`
+
 `data = '89504E470D0A1A0A'.decode('hex')`
+
 `key = "".join(chr(ord(x) ^ ord(y)) for x, y in zip(data, enc_data))`
+
 `print "key is : " + key`
 
 and we get key is : Garfield :D 
@@ -35,7 +40,7 @@ so the last step is to xor the encryption png file with this key and we will get
 
 there is a helpful tools ![xortool](https://github.com/hellman/xortool)
 
-`xortool-xor -f enc_photo.png  -s "Garfield" > flag.png `
+`$xortool-xor -f enc_photo.png  -s "Garfield" > flag.png `
 
 and pwn :D we get the flag :D 
 ![flag.png](http://img4.imagetitan.com/img4/keQKYsvybh8FkJp/13/13_flag.png)
